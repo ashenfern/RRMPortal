@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Mcd.RRMPortal.Web.Controllers
 {
+    [Authorize]
     public class BookController : Controller
     {
         // GET: Book
