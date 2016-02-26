@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mcd.RRMPortal.Business", "Mcd.RRMPortal.Business\Mcd.RRMPortal.Business.csproj", "{BAF7F8AC-79B4-4FC1-9850-DB7F2B110462}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mcd.RRMPortal.Data", "Mcd.RRMPortal.Data\Mcd.RRMPortal.Data.csproj", "{53710029-1098-4940-B136-86D8CC7ADBE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mcd.RRMPortal.Web", "Mcd.RRMPortal.Web\Mcd.RRMPortal.Web.csproj", "{CD28CD8C-48FD-4CF5-8AE5-C86C1896E702}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BAF7F8AC-79B4-4FC1-9850-DB7F2B110462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAF7F8AC-79B4-4FC1-9850-DB7F2B110462}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAF7F8AC-79B4-4FC1-9850-DB7F2B110462}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAF7F8AC-79B4-4FC1-9850-DB7F2B110462}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53710029-1098-4940-B136-86D8CC7ADBE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53710029-1098-4940-B136-86D8CC7ADBE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53710029-1098-4940-B136-86D8CC7ADBE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53710029-1098-4940-B136-86D8CC7ADBE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD28CD8C-48FD-4CF5-8AE5-C86C1896E702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD28CD8C-48FD-4CF5-8AE5-C86C1896E702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD28CD8C-48FD-4CF5-8AE5-C86C1896E702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD28CD8C-48FD-4CF5-8AE5-C86C1896E702}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
