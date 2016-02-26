@@ -1,8 +1,21 @@
-﻿@{
-    Layout = "";
-}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta name="robots" content="noindex, nofollow"><meta name="viewport" content="user-scalable=no, width=device-width"><title>
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="mvcCRUDApp">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/angularJS")
+    @Scripts.Render("~/bundles/customJS")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header>
+       <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 	MCD Login
 </title>
     
@@ -33,7 +46,7 @@
         
         <div class="headermain">
             <div class="header-left">
-                @*<img alt="McDonald's Logo" src="<img src="~/Views/Account/MCDLogin_files/mcdonalds-logo.png" />" border="0">*@<img alt="McDonald's Logo" src="~/Views/Account/MCDLogin_files/mcdonalds-logo.png" />
+                <img alt="McDonald's Logo" src="MCD%20Login_files/mcdonalds-logo.png" border="0">
             </div>
             <div class="headerDiv">
                 <select name="ctl00$ContentPlaceHolder1$ddlLanguageRegular" onchange="javascript:setTimeout('__doPostBack(\'ctl00$ContentPlaceHolder1$ddlLanguageRegular\',\'\')', 0)" id="ctl00_ContentPlaceHolder1_ddlLanguageRegular">
@@ -101,7 +114,7 @@
             <a onclick="StoreProvider('urn:federation:cam');" id="ctl00_ContentPlaceHolder1_WindowsLiveProviderSelect_ProviderImageLink" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$WindowsLiveProviderSelect$ProviderImageLink','')" style="display:inline-block;height:25px;width:26px;"><img id="ctl00_ContentPlaceHolder1_WindowsLiveProviderSelect_ProviderImage" src="MCD%20Login_files/msn_logosm.png" alt="msn" style="height:25px;width:26px;border-width:0px;"></a>
         </td>
         <td id="ctl00_ContentPlaceHolder1_WindowsLiveProviderSelect_FullMode" valign="top">
-            <input name="ctl00$ContentPlaceHolder1$WindowsLiveProviderSelect$btnSelectHomeRealm" value="Windows Live" onclick="StoreProvider('urn:federation:cam'); __doPostBack('ctl00$ContentPlaceHolder1$WindowsLiveProviderSelect$btnSelectHomeRealm', '')" id="ctl00_ContentPlaceHolder1_WindowsLiveProviderSelect_btnSelectHomeRealm" title="msn" class="button" alternatetext="" style="width:100px;" type="button">
+            <input name="ctl00$ContentPlaceHolder1$WindowsLiveProviderSelect$btnSelectHomeRealm" value="Windows Live" onclick="StoreProvider('urn:federation:cam');__doPostBack('ctl00$ContentPlaceHolder1$WindowsLiveProviderSelect$btnSelectHomeRealm','')" id="ctl00_ContentPlaceHolder1_WindowsLiveProviderSelect_btnSelectHomeRealm" title="msn" class="button" alternatetext="" style="width:100px;" type="button">
         </td>
 		
     </tr>
@@ -113,7 +126,7 @@
             <a onclick="StoreProvider('urn:federation:cam');" id="ctl00_ContentPlaceHolder1_FacebookProviderSelect_ProviderImageLink" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$FacebookProviderSelect$ProviderImageLink','')" style="display:inline-block;height:25px;width:26px;"><img id="ctl00_ContentPlaceHolder1_FacebookProviderSelect_ProviderImage" src="MCD%20Login_files/facebook_logosm.png" alt="facebook" style="height:25px;width:26px;border-width:0px;"></a>
         </td>
         <td id="ctl00_ContentPlaceHolder1_FacebookProviderSelect_FullMode" valign="top">
-            <input name="ctl00$ContentPlaceHolder1$FacebookProviderSelect$btnSelectHomeRealm" value="Facebook" onclick="StoreProvider('urn:federation:cam'); __doPostBack('ctl00$ContentPlaceHolder1$FacebookProviderSelect$btnSelectHomeRealm', '')" id="ctl00_ContentPlaceHolder1_FacebookProviderSelect_btnSelectHomeRealm" title="facebook" class="button" alternatetext="" style="width:100px;" type="button">
+            <input name="ctl00$ContentPlaceHolder1$FacebookProviderSelect$btnSelectHomeRealm" value="Facebook" onclick="StoreProvider('urn:federation:cam');__doPostBack('ctl00$ContentPlaceHolder1$FacebookProviderSelect$btnSelectHomeRealm','')" id="ctl00_ContentPlaceHolder1_FacebookProviderSelect_btnSelectHomeRealm" title="facebook" class="button" alternatetext="" style="width:100px;" type="button">
         </td>
 		
     </tr>
@@ -125,7 +138,7 @@
             <a onclick="StoreProvider('urn:federation:cam');" id="ctl00_ContentPlaceHolder1_GoogleProvider_ProviderImageLink" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$GoogleProvider$ProviderImageLink','')" style="display:inline-block;height:25px;width:26px;"><img id="ctl00_ContentPlaceHolder1_GoogleProvider_ProviderImage" src="MCD%20Login_files/google_logosm.png" alt="google" style="height:25px;width:26px;border-width:0px;"></a>
         </td>
         <td id="ctl00_ContentPlaceHolder1_GoogleProvider_FullMode" valign="top">
-            <input name="ctl00$ContentPlaceHolder1$GoogleProvider$btnSelectHomeRealm" value="Google" onclick="StoreProvider('urn:federation:cam'); __doPostBack('ctl00$ContentPlaceHolder1$GoogleProvider$btnSelectHomeRealm', '')" id="ctl00_ContentPlaceHolder1_GoogleProvider_btnSelectHomeRealm" title="google" class="button" alternatetext="" style="width:100px;" type="button">
+            <input name="ctl00$ContentPlaceHolder1$GoogleProvider$btnSelectHomeRealm" value="Google" onclick="StoreProvider('urn:federation:cam');__doPostBack('ctl00$ContentPlaceHolder1$GoogleProvider$btnSelectHomeRealm','')" id="ctl00_ContentPlaceHolder1_GoogleProvider_btnSelectHomeRealm" title="google" class="button" alternatetext="" style="width:100px;" type="button">
         </td>
 		
     </tr>
@@ -137,7 +150,7 @@
             <a onclick="StoreProvider('urn:federation:cam');" id="ctl00_ContentPlaceHolder1_YahooProvider_ProviderImageLink" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$YahooProvider$ProviderImageLink','')" style="display:inline-block;height:25px;width:26px;"><img id="ctl00_ContentPlaceHolder1_YahooProvider_ProviderImage" src="MCD%20Login_files/yahoo_logosm.png" alt="yahoo" style="height:25px;width:26px;border-width:0px;"></a>
         </td>
         <td id="ctl00_ContentPlaceHolder1_YahooProvider_FullMode" valign="top">
-            <input name="ctl00$ContentPlaceHolder1$YahooProvider$btnSelectHomeRealm" value="Yahoo" onclick="StoreProvider('urn:federation:cam'); __doPostBack('ctl00$ContentPlaceHolder1$YahooProvider$btnSelectHomeRealm', '')" id="ctl00_ContentPlaceHolder1_YahooProvider_btnSelectHomeRealm" title="yahoo" class="button" alternatetext="" style="width:100px;" type="button">
+            <input name="ctl00$ContentPlaceHolder1$YahooProvider$btnSelectHomeRealm" value="Yahoo" onclick="StoreProvider('urn:federation:cam');__doPostBack('ctl00$ContentPlaceHolder1$YahooProvider$btnSelectHomeRealm','')" id="ctl00_ContentPlaceHolder1_YahooProvider_btnSelectHomeRealm" title="yahoo" class="button" alternatetext="" style="width:100px;" type="button">
         </td>
 		
     </tr>
@@ -203,7 +216,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <input name="ctl00$ContentPlaceHolder1$btnSubmit" value="Login" onclick='javascript: WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$ContentPlaceHolder1$btnSubmit", "", true, "", "", false, false))' id="ctl00_ContentPlaceHolder1_btnSubmit" tabindex="3" class="button" type="submit">
+                                                    <input name="ctl00$ContentPlaceHolder1$btnSubmit" value="Login" onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$ContentPlaceHolder1$btnSubmit", "", true, "", "", false, false))' id="ctl00_ContentPlaceHolder1_btnSubmit" tabindex="3" class="button" type="submit">
                                                 </td>
                                             </tr>
                                              <tr>
@@ -265,7 +278,7 @@
                                 <span id="ctl00_ContentPlaceHolder1_hrMailRegularExpressionValidator" style="color:Red;font-size:Smaller;visibility:hidden;">Invalid mail address</span>
                             </div>
                             <div align="center">
-                                <input name="ctl00$ContentPlaceHolder1$hrMailClick" value="Submit" onclick='javascript: WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$ContentPlaceHolder1$hrMailClick", "", true, "hrMailValidationGroup", "", false, false))' id="ctl00_ContentPlaceHolder1_hrMailClick" class="button" type="submit">      
+                                <input name="ctl00$ContentPlaceHolder1$hrMailClick" value="Submit" onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$ContentPlaceHolder1$hrMailClick", "", true, "hrMailValidationGroup", "", false, false))' id="ctl00_ContentPlaceHolder1_hrMailClick" class="button" type="submit">      
 
                                  <input name="ctl00$ContentPlaceHolder1$ctl02" class="button" onclick="FederatedPartnerLogin(false);" value="Cancel" type="button">                                                                            
                             </div>							
@@ -286,4 +299,24 @@
 
 
 
-</div></form></body></html>
+</div></form></body>
+    </header>
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

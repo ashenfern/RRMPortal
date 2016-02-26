@@ -1051,6 +1051,19 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Views\Account\content_background.css" />
+    <Content Include="Views\Account\MCDLogin_files\blank.gif" />
+    <Content Include="Views\Account\MCDLogin_files\content_background.css" />
+    <Content Include="Views\Account\MCDLogin_files\facebook_logosm.png" />
+    <Content Include="Views\Account\MCDLogin_files\general.css" />
+    <Content Include="Views\Account\MCDLogin_files\google_logosm.png" />
+    <Content Include="Views\Account\MCDLogin_files\mcdonalds-logo.png" />
+    <Content Include="Views\Account\MCDLogin_files\modal.css" />
+    <Content Include="Views\Account\MCDLogin_files\msn_logosm.png" />
+    <Content Include="Views\Account\MCDLogin_files\WebResource.js" />
+    <Content Include="Views\Account\MCDLogin_files\WebResource_002.js" />
+    <Content Include="Views\Account\MCDLogin_files\WebResource_003.js" />
+    <Content Include="Views\Account\MCDLogin_files\yahoo_logosm.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1092,6 +1105,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
