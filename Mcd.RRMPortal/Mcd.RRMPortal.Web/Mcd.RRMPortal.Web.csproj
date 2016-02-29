@@ -1063,6 +1063,21 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\RSM Support Portal_files\browsercheck.js" />
+    <Content Include="Scripts\RSM Support Portal_files\DXR.css" />
+    <Content Include="Scripts\RSM Support Portal_files\jQuery.js" />
+    <Content Include="Scripts\RSM Support Portal_files\jQuery_002.js" />
+    <Content Include="Scripts\RSM Support Portal_files\js.js" />
+    <Content Include="Scripts\RSM Support Portal_files\js_002.js" />
+    <Content Include="Scripts\RSM Support Portal_files\Loading.gif" />
+    <Content Include="Scripts\RSM Support Portal_files\m_logo.png" />
+    <Content Include="Scripts\RSM Support Portal_files\ReportingServices.js" />
+    <Content Include="Scripts\RSM Support Portal_files\ScriptResource.js" />
+    <Content Include="Scripts\RSM Support Portal_files\ScriptResource_002.js" />
+    <Content Include="Scripts\RSM Support Portal_files\ScriptResource_003.js" />
+    <Content Include="Scripts\RSM Support Portal_files\SolutionWideScripts.js" />
+    <Content Include="Scripts\RSM Support Portal_files\Style.css" />
+    <Content Include="Scripts\RSM Support Portal_files\WebResource.js" />
     <Content Include="Views\Account\content_background.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1106,9 +1121,13 @@
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Scripts\RSM Support Portal_files\DXR.axd" />
+    <Content Include="Scripts\RSM Support Portal_files\DXR_002.axd" />
+    <Content Include="Scripts\RSM Support Portal_files\DXR_003.axd" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
