@@ -16,7 +16,8 @@
 <body>
     <section id="loginForm">
         @*<h2>Use a local account to log in.</h2>*@
-        @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+        @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+        {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
 
@@ -115,7 +116,7 @@
                                                                                         <img id="ctl00_ContentPlaceHolder1_WindowsLiveProviderSelect_ProviderImage" src="~/Images/MCD%20Login_files/msn_logosm.png" alt="msn" style="height: 25px; width: 26px; border-width: 0px;"></a>
                                                                                 </td>
                                                                                 <td id="ctl00_ContentPlaceHolder1_WindowsLiveProviderSelect_FullMode" valign="top">
-                                                                                    <input name="ctl00$ContentPlaceHolder1$WindowsLiveProviderSelect$btnSelectHomeRealm" value="Windows Live" onclick="StoreProvider('urn:federation:cam');__doPostBack('ctl00$ContentPlaceHolder1$WindowsLiveProviderSelect$btnSelectHomeRealm','')" id="ctl00_ContentPlaceHolder1_WindowsLiveProviderSelect_btnSelectHomeRealm" title="msn" class="button" alternatetext="" style="width: 100px;" type="button">
+                                                                                    <input name="ctl00$ContentPlaceHolder1$WindowsLiveProviderSelect$btnSelectHomeRealm" value="Windows Live" onclick="StoreProvider('urn:federation:cam'); __doPostBack('ctl00$ContentPlaceHolder1$WindowsLiveProviderSelect$btnSelectHomeRealm', '')" id="ctl00_ContentPlaceHolder1_WindowsLiveProviderSelect_btnSelectHomeRealm" title="msn" class="button" alternatetext="" style="width: 100px;" type="button">
                                                                                 </td>
 
                                                                             </tr>
@@ -130,7 +131,7 @@
                                                                                         <img id="ctl00_ContentPlaceHolder1_FacebookProviderSelect_ProviderImage" src="~/Images/MCD%20Login_files/facebook_logosm.png" alt="facebook" style="height: 25px; width: 26px; border-width: 0px;"></a>
                                                                                 </td>
                                                                                 <td id="ctl00_ContentPlaceHolder1_FacebookProviderSelect_FullMode" valign="top">
-                                                                                    <input name="ctl00$ContentPlaceHolder1$FacebookProviderSelect$btnSelectHomeRealm" value="Facebook" onclick="StoreProvider('urn:federation:cam');__doPostBack('ctl00$ContentPlaceHolder1$FacebookProviderSelect$btnSelectHomeRealm','')" id="ctl00_ContentPlaceHolder1_FacebookProviderSelect_btnSelectHomeRealm" title="facebook" class="button" alternatetext="" style="width: 100px;" type="button">
+                                                                                    <input name="ctl00$ContentPlaceHolder1$FacebookProviderSelect$btnSelectHomeRealm" value="Facebook" onclick="StoreProvider('urn:federation:cam'); __doPostBack('ctl00$ContentPlaceHolder1$FacebookProviderSelect$btnSelectHomeRealm', '')" id="ctl00_ContentPlaceHolder1_FacebookProviderSelect_btnSelectHomeRealm" title="facebook" class="button" alternatetext="" style="width: 100px;" type="button">
                                                                                 </td>
 
                                                                             </tr>
@@ -145,7 +146,7 @@
                                                                                         <img id="ctl00_ContentPlaceHolder1_GoogleProvider_ProviderImage" src="~/Images/MCD%20Login_files/google_logosm.png" alt="google" style="height: 25px; width: 26px; border-width: 0px;"></a>
                                                                                 </td>
                                                                                 <td id="ctl00_ContentPlaceHolder1_GoogleProvider_FullMode" valign="top">
-                                                                                    <input name="ctl00$ContentPlaceHolder1$GoogleProvider$btnSelectHomeRealm" value="Google" onclick="StoreProvider('urn:federation:cam');__doPostBack('ctl00$ContentPlaceHolder1$GoogleProvider$btnSelectHomeRealm','')" id="ctl00_ContentPlaceHolder1_GoogleProvider_btnSelectHomeRealm" title="google" class="button" alternatetext="" style="width: 100px;" type="button">
+                                                                                    <input name="ctl00$ContentPlaceHolder1$GoogleProvider$btnSelectHomeRealm" value="Google" onclick="StoreProvider('urn:federation:cam'); __doPostBack('ctl00$ContentPlaceHolder1$GoogleProvider$btnSelectHomeRealm', '')" id="ctl00_ContentPlaceHolder1_GoogleProvider_btnSelectHomeRealm" title="google" class="button" alternatetext="" style="width: 100px;" type="button">
                                                                                 </td>
 
                                                                             </tr>
@@ -160,7 +161,7 @@
                                                                                         <img id="ctl00_ContentPlaceHolder1_YahooProvider_ProviderImage" src="~/Images/MCD%20Login_files/yahoo_logosm.png" alt="yahoo" style="height: 25px; width: 26px; border-width: 0px;"></a>
                                                                                 </td>
                                                                                 <td id="ctl00_ContentPlaceHolder1_YahooProvider_FullMode" valign="top">
-                                                                                    <input name="ctl00$ContentPlaceHolder1$YahooProvider$btnSelectHomeRealm" value="Yahoo" onclick="StoreProvider('urn:federation:cam');__doPostBack('ctl00$ContentPlaceHolder1$YahooProvider$btnSelectHomeRealm','')" id="ctl00_ContentPlaceHolder1_YahooProvider_btnSelectHomeRealm" title="yahoo" class="button" alternatetext="" style="width: 100px;" type="button">
+                                                                                    <input name="ctl00$ContentPlaceHolder1$YahooProvider$btnSelectHomeRealm" value="Yahoo" onclick="StoreProvider('urn:federation:cam'); __doPostBack('ctl00$ContentPlaceHolder1$YahooProvider$btnSelectHomeRealm', '')" id="ctl00_ContentPlaceHolder1_YahooProvider_btnSelectHomeRealm" title="yahoo" class="button" alternatetext="" style="width: 100px;" type="button">
                                                                                 </td>
 
                                                                             </tr>
@@ -213,7 +214,9 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <input name="ctl00$ContentPlaceHolder1$UsernameRegular" maxlength="50" size="15" id="ctl00_ContentPlaceHolder1_UsernameRegular" tabindex="1" class="input" style="width: 270px;" type="text">
+                                                                    @*<input name="ctl00$ContentPlaceHolder1$UsernameRegular" maxlength="50" size="15" id="ctl00_ContentPlaceHolder1_UsernameRegular" tabindex="1" class="input" style="width: 270px;" type="text">*@
+                                                                    @Html.TextBoxFor(m => m.UserName)
+                                                                    @Html.ValidationMessageFor(m => m.UserName)
                                                                     <span id="ctl00_ContentPlaceHolder1_RequiredUserNameTextBox" style="color: Red; visibility: hidden;">*</span>
                                                                 </td>
                                                             </tr>
@@ -235,13 +238,16 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <input name="ctl00$ContentPlaceHolder1$PasswordTextBoxRegular" maxlength="30" size="15" id="ctl00_ContentPlaceHolder1_PasswordTextBoxRegular" tabindex="2" class="input" style="width: 270px;" type="password">
+                                                                    @*<input name="ctl00$ContentPlaceHolder1$PasswordTextBoxRegular" maxlength="30" size="15" id="ctl00_ContentPlaceHolder1_PasswordTextBoxRegular" tabindex="2" class="input" style="width: 270px;" type="password">*@
+                                                                    @Html.PasswordFor(m => m.Password)
+                                                                    @Html.ValidationMessageFor(m => m.Password)
                                                                     <span id="ctl00_ContentPlaceHolder1_requiredPasswordField" style="color: Red; visibility: hidden;">*</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <input name="ctl00$ContentPlaceHolder1$btnSubmit" value="Login" onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$ContentPlaceHolder1$btnSubmit", "", true, "", "", false, false))' id="ctl00_ContentPlaceHolder1_btnSubmit" tabindex="3" class="button" type="submit">
+                                                                    @*<input name="ctl00$ContentPlaceHolder1$btnSubmit" value="Login" onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$ContentPlaceHolder1$btnSubmit", "", true, "", "", false, false))' id="ctl00_ContentPlaceHolder1_btnSubmit" tabindex="3" class="button" type="submit">*@
+                                                                    <input type="submit" value="Log in" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -249,6 +255,8 @@
                                                                     <div class="texth3">
                                                                         <span id="ctl00_ContentPlaceHolder1_federatedPartnerTitle">If you are Federated Partner user</span>
                                                                         <a href="javascript:FederatedPartnerLogin(true)" class="texth3"><span id="ctl00_ContentPlaceHolder1_Label18">click here</span></a>
+                                                                        <br/>    
+                                                                        @Html.ActionLink("Register", "Register") if you don't have an account.                                                     
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -307,7 +315,7 @@
                                     <span id="ctl00_ContentPlaceHolder1_hrMailRegularExpressionValidator" style="color: Red; font-size: Smaller; visibility: hidden;">Invalid mail address</span>
                                 </div>
                                 <div align="center">
-                                    <input name="ctl00$ContentPlaceHolder1$hrMailClick" value="Submit" onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$ContentPlaceHolder1$hrMailClick", "", true, "hrMailValidationGroup", "", false, false))' id="ctl00_ContentPlaceHolder1_hrMailClick" class="button" type="submit">
+                                    <input name="ctl00$ContentPlaceHolder1$hrMailClick" value="Submit" onclick='javascript: WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$ContentPlaceHolder1$hrMailClick", "", true, "hrMailValidationGroup", "", false, false))' id="ctl00_ContentPlaceHolder1_hrMailClick" class="button" type="submit">
 
                                     <input name="ctl00$ContentPlaceHolder1$ctl02" class="button" onclick="FederatedPartnerLogin(false);" value="Cancel" type="button">
                                 </div>
@@ -319,10 +327,10 @@
 
                 <input name="GlobalAS_Provider" id="GlobalAS_Provider" value="" type="hidden">
             </div>
-}
+        }
     </section>
 
-   
+
 
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
