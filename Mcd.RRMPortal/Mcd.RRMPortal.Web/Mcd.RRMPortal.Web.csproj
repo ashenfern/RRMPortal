@@ -252,6 +252,18 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\MCD Login_files\blank.gif" />
+    <Content Include="Images\MCD Login_files\content_background.css" />
+    <Content Include="Images\MCD Login_files\facebook_logosm.png" />
+    <Content Include="Images\MCD Login_files\general.css" />
+    <Content Include="Images\MCD Login_files\google_logosm.png" />
+    <Content Include="Images\MCD Login_files\mcdonalds-logo.png" />
+    <Content Include="Images\MCD Login_files\modal.css" />
+    <Content Include="Images\MCD Login_files\msn_logosm.png" />
+    <Content Include="Images\MCD Login_files\WebResource.js" />
+    <Content Include="Images\MCD Login_files\WebResource_002.js" />
+    <Content Include="Images\MCD Login_files\WebResource_003.js" />
+    <Content Include="Images\MCD Login_files\yahoo_logosm.png" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\BookScripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -1052,18 +1064,6 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Views\Account\content_background.css" />
-    <Content Include="Views\Account\MCDLogin_files\blank.gif" />
-    <Content Include="Views\Account\MCDLogin_files\content_background.css" />
-    <Content Include="Views\Account\MCDLogin_files\facebook_logosm.png" />
-    <Content Include="Views\Account\MCDLogin_files\general.css" />
-    <Content Include="Views\Account\MCDLogin_files\google_logosm.png" />
-    <Content Include="Views\Account\MCDLogin_files\mcdonalds-logo.png" />
-    <Content Include="Views\Account\MCDLogin_files\modal.css" />
-    <Content Include="Views\Account\MCDLogin_files\msn_logosm.png" />
-    <Content Include="Views\Account\MCDLogin_files\WebResource.js" />
-    <Content Include="Views\Account\MCDLogin_files\WebResource_002.js" />
-    <Content Include="Views\Account\MCDLogin_files\WebResource_003.js" />
-    <Content Include="Views\Account\MCDLogin_files\yahoo_logosm.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

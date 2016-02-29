@@ -3,48 +3,327 @@
 @{
     ViewBag.Title = "Log in";
 }
+@{
+    Layout = "";
+}
 
 <hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
+    @*<h1>@ViewBag.Title.</h1>*@
 </hgroup>
+<html>
+<body>
+    <section id="loginForm">
+        @*<h2>Use a local account to log in.</h2>*@
+        @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
 
-<section id="loginForm">
-<h2>Use a local account to log in.</h2>
-@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+            <div>
+                <input name="__LASTFOCUS" id="__LASTFOCUS" value="" type="hidden">
+                <input name="__EVENTTARGET" id="__EVENTTARGET" value="" type="hidden">
+                <input name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" type="hidden">
+                <input name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTkwOTI0NTE0Ng9kFgJmD2QWAgIDDxYCHgZhY3Rpb24FlgEvYWRmcy9scy8/d2E9d3NpZ25pbjEuMCZ3dHJlYWxtPWh0dHBzJTNhJTJmJTJmcnJtdWF0Lm1jZC5jb20lMmZzYW1sdmFsaWRhdG9yLmFzcHgmd2N0eD1ybSUzZDAlMjZpZCUzZHBhc3NpdmUlMjZydSUzZCUyNTJmJndjdD0yMDE2LTAyLTI2VDA1JTNhNDYlM2EyNVoWAgICD2QWBGYPZBYEZg8QZGQWAWZkAgIPZBYKAgUPZBYEAgEPDxYCHg1PbkNsaWVudENsaWNrBSNTdG9yZVByb3ZpZGVyKCd1cm46ZmVkZXJhdGlvbjpjYW0nKWRkAgMPZBYCAgEPDxYCHwEFI1N0b3JlUHJvdmlkZXIoJ3VybjpmZWRlcmF0aW9uOmNhbScpZGQCBw9kFgQCAQ8PFgIfAQUjU3RvcmVQcm92aWRlcigndXJuOmZlZGVyYXRpb246Y2FtJylkZAIDD2QWAgIBDw8WAh8BBSNTdG9yZVByb3ZpZGVyKCd1cm46ZmVkZXJhdGlvbjpjYW0nKWRkAgkPZBYEAgEPDxYCHwEFI1N0b3JlUHJvdmlkZXIoJ3VybjpmZWRlcmF0aW9uOmNhbScpZGQCAw9kFgICAQ8PFgIfAQUjU3RvcmVQcm92aWRlcigndXJuOmZlZGVyYXRpb246Y2FtJylkZAILD2QWBAIBDw8WAh8BBSNTdG9yZVByb3ZpZGVyKCd1cm46ZmVkZXJhdGlvbjpjYW0nKWRkAgMPZBYCAgEPDxYCHwEFI1N0b3JlUHJvdmlkZXIoJ3VybjpmZWRlcmF0aW9uOmNhbScpZGQCHQ8PFgIeC05hdmlnYXRlVXJsBSVodHRwczovL2FjY291bnQubWNkLmNvbS9tYW5hZ2UvcmVzZXQvZGQCAQ8PFgIeB1Zpc2libGVoZBYEAgEPEGRkFgFmZAIDD2QWCAIjD2QWAgIBDw8WAh8BBSNTdG9yZVByb3ZpZGVyKCd1cm46ZmVkZXJhdGlvbjpjYW0nKWRkAiUPZBYCAgEPDxYCHwEFI1N0b3JlUHJvdmlkZXIoJ3VybjpmZWRlcmF0aW9uOmNhbScpZGQCJw9kFgICAQ8PFgIfAQUjU3RvcmVQcm92aWRlcigndXJuOmZlZGVyYXRpb246Y2FtJylkZAIpD2QWAgIBDw8WAh8BBSNTdG9yZVByb3ZpZGVyKCd1cm46ZmVkZXJhdGlvbjpjYW0nKWRkZK4fhAfmoTpNhzFFHe+4U0S61/g3" type="hidden">
+            </div>
 
-    <fieldset>
-        <legend>Log in Form</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
-                @Html.ValidationMessageFor(m => m.UserName)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-                @Html.ValidationMessageFor(m => m.Password)
-            </li>
-            <li>
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
-            </li>
-        </ol>
-        <input type="submit" value="Log in" />
-    </fieldset>
-    <p>
-        @Html.ActionLink("Register", "Register") if you don't have an account.
-    </p>
+
+
+            <div>
+
+                <input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="C048E37C" type="hidden">
+                <input name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWIgLOloGFCgLnmcnFAQK37L2pBwKMg4/GCwK4kbJaAr2R1nQCwZCG4w0C/4PfxgsC9YOHxgsCjYPfxgsCv5qa9wkCi4OrxgsC8IPnxgsC8YObxgsC8oOTxgsC54OHxgsC54PnxgsC+YPrxgsCjIPjxgsC+oPvxgsCmJ3H9A8C753B+w0Cu6OmxgYCtuDu5QEC3Yz/swUCyMG45gEC9eb10A8CjvrI9AsC6ujOOAKrrPvNDwL40JWiCgKjzfq3BAK/8sD3CAKyybnWCU6UQSj5F6opwjWAtlbD4eisqpig" type="hidden">
+            </div>
+            <input name="__db" value="14" type="hidden">
+        
+    
+      
+
+            <div id="ctl00_ContentPlaceHolder1_regularPage" onkeypress="javascript:return WebForm_FireDefaultButton(event, 'ctl00_ContentPlaceHolder1_btnSubmit')">
+
+
+                <div class="headermain">
+                    <div class="header-left">
+                        <img src="~/Images/MCD%20Login_files/mcdonalds-logo.png" />
+                    </div>
+                    <div class="headerDiv">
+                        <select name="ctl00$ContentPlaceHolder1$ddlLanguageRegular" onchange="javascript:setTimeout('__doPostBack(\'ctl00$ContentPlaceHolder1$ddlLanguageRegular\',\'\')', 0)" id="ctl00_ContentPlaceHolder1_ddlLanguageRegular">
+                            <option selected="selected" value="en">English</option>
+                            <option value="zh-cn">Chinese</option>
+                            <option value="zh-hk">Chinese Hong Kong</option>
+                            <option value="zh-tw">Chinese Taiwan</option>
+                            <option value="hr">Croatian</option>
+                            <option value="nl">Dutch</option>
+                            <option value="fr">French</option>
+                            <option value="fr-CA">French Canadian</option>
+                            <option value="de">German</option>
+                            <option value="it">Italian</option>
+                            <option value="ja">Japanese</option>
+                            <option value="ko">Korean</option>
+                            <option value="pl">Polish</option>
+                            <option value="pt">Portuguese</option>
+                            <option value="ru">Russian</option>
+                            <option value="es">Spanish</option>
+                            <option value="sv">Swedish</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="photoimage">
+                    <div class="margin">
+                        <div class="curved">
+                            <div class="content">
+                                <div id="ctl00_ContentPlaceHolder1_lblStaging" style="color: Red; font-weight: bold; font-size: 50px; display: none">
+                                    STAGING
+                                </div>
+                                <div class="t">
+                                </div>
+                                <div id="ctl00_ContentPlaceHolder1_loginPanelRegular">
+
+                                    <p>
+                                        &nbsp;
+                                    </p>
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td valign="top">
+                                                    <table border="0" cellpadding="0" cellspacing="10">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <h1>
+                                                                        <span id="ctl00_ContentPlaceHolder1_lblRestaurantCrewLogin">Restaurant Crew Login</span></h1>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <br>
+                                                                    <br>
+                                                                    <span id="ctl00_ContentPlaceHolder1_lblClickButton">Click the button below to sign on using your existing registered account information:</span>
+                                                                    <br>
+                                                                    <br>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td tabindex="6">
+
+                                                                    <table border="0" cellpadding="0" cellspacing="0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td valign="top">
+                                                                                    <a onclick="StoreProvider('urn:federation:cam');" id="ctl00_ContentPlaceHolder1_WindowsLiveProviderSelect_ProviderImageLink" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$WindowsLiveProviderSelect$ProviderImageLink','')" style="display: inline-block; height: 25px; width: 26px;">
+                                                                                        <img id="ctl00_ContentPlaceHolder1_WindowsLiveProviderSelect_ProviderImage" src="MCD%20Login_files/msn_logosm.png" alt="msn" style="height: 25px; width: 26px; border-width: 0px;"></a>
+                                                                                </td>
+                                                                                <td id="ctl00_ContentPlaceHolder1_WindowsLiveProviderSelect_FullMode" valign="top">
+                                                                                    <input name="ctl00$ContentPlaceHolder1$WindowsLiveProviderSelect$btnSelectHomeRealm" value="Windows Live" onclick="StoreProvider('urn:federation:cam');__doPostBack('ctl00$ContentPlaceHolder1$WindowsLiveProviderSelect$btnSelectHomeRealm','')" id="ctl00_ContentPlaceHolder1_WindowsLiveProviderSelect_btnSelectHomeRealm" title="msn" class="button" alternatetext="" style="width: 100px;" type="button">
+                                                                                </td>
+
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                    <table border="0" cellpadding="0" cellspacing="0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td valign="top">
+                                                                                    <a onclick="StoreProvider('urn:federation:cam');" id="ctl00_ContentPlaceHolder1_FacebookProviderSelect_ProviderImageLink" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$FacebookProviderSelect$ProviderImageLink','')" style="display: inline-block; height: 25px; width: 26px;">
+                                                                                        <img id="ctl00_ContentPlaceHolder1_FacebookProviderSelect_ProviderImage" src="MCD%20Login_files/facebook_logosm.png" alt="facebook" style="height: 25px; width: 26px; border-width: 0px;"></a>
+                                                                                </td>
+                                                                                <td id="ctl00_ContentPlaceHolder1_FacebookProviderSelect_FullMode" valign="top">
+                                                                                    <input name="ctl00$ContentPlaceHolder1$FacebookProviderSelect$btnSelectHomeRealm" value="Facebook" onclick="StoreProvider('urn:federation:cam');__doPostBack('ctl00$ContentPlaceHolder1$FacebookProviderSelect$btnSelectHomeRealm','')" id="ctl00_ContentPlaceHolder1_FacebookProviderSelect_btnSelectHomeRealm" title="facebook" class="button" alternatetext="" style="width: 100px;" type="button">
+                                                                                </td>
+
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                    <table border="0" cellpadding="0" cellspacing="0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td valign="top">
+                                                                                    <a onclick="StoreProvider('urn:federation:cam');" id="ctl00_ContentPlaceHolder1_GoogleProvider_ProviderImageLink" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$GoogleProvider$ProviderImageLink','')" style="display: inline-block; height: 25px; width: 26px;">
+                                                                                        <img id="ctl00_ContentPlaceHolder1_GoogleProvider_ProviderImage" src="MCD%20Login_files/google_logosm.png" alt="google" style="height: 25px; width: 26px; border-width: 0px;"></a>
+                                                                                </td>
+                                                                                <td id="ctl00_ContentPlaceHolder1_GoogleProvider_FullMode" valign="top">
+                                                                                    <input name="ctl00$ContentPlaceHolder1$GoogleProvider$btnSelectHomeRealm" value="Google" onclick="StoreProvider('urn:federation:cam');__doPostBack('ctl00$ContentPlaceHolder1$GoogleProvider$btnSelectHomeRealm','')" id="ctl00_ContentPlaceHolder1_GoogleProvider_btnSelectHomeRealm" title="google" class="button" alternatetext="" style="width: 100px;" type="button">
+                                                                                </td>
+
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                    <table border="0" cellpadding="0" cellspacing="0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td valign="top">
+                                                                                    <a onclick="StoreProvider('urn:federation:cam');" id="ctl00_ContentPlaceHolder1_YahooProvider_ProviderImageLink" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$YahooProvider$ProviderImageLink','')" style="display: inline-block; height: 25px; width: 26px;">
+                                                                                        <img id="ctl00_ContentPlaceHolder1_YahooProvider_ProviderImage" src="MCD%20Login_files/yahoo_logosm.png" alt="yahoo" style="height: 25px; width: 26px; border-width: 0px;"></a>
+                                                                                </td>
+                                                                                <td id="ctl00_ContentPlaceHolder1_YahooProvider_FullMode" valign="top">
+                                                                                    <input name="ctl00$ContentPlaceHolder1$YahooProvider$btnSelectHomeRealm" value="Yahoo" onclick="StoreProvider('urn:federation:cam');__doPostBack('ctl00$ContentPlaceHolder1$YahooProvider$btnSelectHomeRealm','')" id="ctl00_ContentPlaceHolder1_YahooProvider_btnSelectHomeRealm" title="yahoo" class="button" alternatetext="" style="width: 100px;" type="button">
+                                                                                </td>
+
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td width="20">&nbsp;
+                                                </td>
+                                                <td bgcolor="#dfdfdf" width="2px">
+                                                    <img src="MCD%20Login_files/blank.gif" alt="">
+                                                </td>
+                                                <td width="20">&nbsp;
+                                                </td>
+                                                <td valign="top">
+                                                    <table border="0" cellpadding="0" cellspacing="10">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <h1>
+                                                                        <span id="ctl00_ContentPlaceHolder1_lblMcDonaldsID">McDonald's ID</span></h1>
+                                                                    <h2>
+                                                                        <span id="ctl00_ContentPlaceHolder1_lblRestOOStaff">(Restaurant Management, O/O &amp; Staff, Corporate, 3rd Party)</span></h2>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <br>
+                                                                    <h3>
+                                                                        <span id="ctl00_ContentPlaceHolder1_lblSignIn">If you have a McDonald's ID, sign on below:</span>
+                                                                    </h3>
+                                                                    <br>
+                                                                    <table border="0" cellpadding="0" cellspacing="0" width="270px">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <strong>
+                                                                                        <span id="ctl00_ContentPlaceHolder1_lblUserName">User name:</span>
+                                                                                    </strong>
+                                                                                </td>
+                                                                                <td align="right">
+                                                                                    <a id="ctl00_ContentPlaceHolder1_LoginHelpLink" tabindex="4" href="https://gafs.mcd.com/adfs/ls/Public/Login_Help.htm" target="_blank"><span id="ctl00_ContentPlaceHolder1_lblForgotUserName">Forgot your username?</span></a></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input name="ctl00$ContentPlaceHolder1$UsernameRegular" maxlength="50" size="15" id="ctl00_ContentPlaceHolder1_UsernameRegular" tabindex="1" class="input" style="width: 270px;" type="text">
+                                                                    <span id="ctl00_ContentPlaceHolder1_RequiredUserNameTextBox" style="color: Red; visibility: hidden;">*</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table border="0" cellpadding="0" cellspacing="0" width="270px">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <strong>
+                                                                                        <span id="ctl00_ContentPlaceHolder1_lblPass">Password:</span></strong>
+                                                                                </td>
+                                                                                <td align="right">
+                                                                                    <a id="ctl00_ContentPlaceHolder1_lnkForgotenPasswordRegular" tabindex="5" href="https://account.mcd.com/manage/reset/" target="_blank"><span id="ctl00_ContentPlaceHolder1_Label1">Forgot password?</span></a></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input name="ctl00$ContentPlaceHolder1$PasswordTextBoxRegular" maxlength="30" size="15" id="ctl00_ContentPlaceHolder1_PasswordTextBoxRegular" tabindex="2" class="input" style="width: 270px;" type="password">
+                                                                    <span id="ctl00_ContentPlaceHolder1_requiredPasswordField" style="color: Red; visibility: hidden;">*</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input name="ctl00$ContentPlaceHolder1$btnSubmit" value="Login" onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$ContentPlaceHolder1$btnSubmit", "", true, "", "", false, false))' id="ctl00_ContentPlaceHolder1_btnSubmit" tabindex="3" class="button" type="submit">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="texth3">
+                                                                        <span id="ctl00_ContentPlaceHolder1_federatedPartnerTitle">If you are Federated Partner user</span>
+                                                                        <a href="javascript:FederatedPartnerLogin(true)" class="texth3"><span id="ctl00_ContentPlaceHolder1_Label18">click here</span></a>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+
+                            </div>
+                            <div class="b">
+                                <div>
+                                </div>
+                            </div>
+                            <div class="footer">
+                                <strong>
+                                    <span id="ctl00_ContentPlaceHolder1_lblSecurityNotice">Security Notice:</span>
+                                </strong>
+                                <span id="ctl00_ContentPlaceHolder1_lblOnlyIndividuals">Only individuals with an authorized user name and password may utilize McDonald's secure web sites and applications.
+                                    <br>
+                                    Unauthorized use is strictly prohibited.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+    
+
+
+            <div class="modalWindow visible" id="FederatedPartnerDiv" style="display: none">
+                <div id="ctl00_ContentPlaceHolder1_federatedPartnerPanel" class="modalTable" onkeypress="javascript:return WebForm_FireDefaultButton(event, 'ctl00_ContentPlaceHolder1_hrMailClick')">
+
+                    <div class="td">
+                        <div class="window">
+                            <div class="closeBar">
+                                <span>
+                                    <span id="ctl00_ContentPlaceHolder1_Label7">Federated Partner User</span>
+                                </span>
+                                <span class="closeBtn" onclick="FederatedPartnerLogin(false);"></span>
+                            </div>
+                            <div class="modalContent">
+                                <h2>
+                                    <span id="ctl00_ContentPlaceHolder1_Label3">Enter your E-mail Address:</span>
+                                </h2>
+                                <div>
+                                    <input name="ctl00$ContentPlaceHolder1$hrMail" id="ctl00_ContentPlaceHolder1_hrMail" class="input" style="width: 300px;" type="text">
+
+                                    <span id="ctl00_ContentPlaceHolder1_hrMailRequiredFieldValidator" style="color: Red; visibility: hidden;">*</span>
+
+                                    <span id="ctl00_ContentPlaceHolder1_hrMailRegularExpressionValidator" style="color: Red; font-size: Smaller; visibility: hidden;">Invalid mail address</span>
+                                </div>
+                                <div align="center">
+                                    <input name="ctl00$ContentPlaceHolder1$hrMailClick" value="Submit" onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$ContentPlaceHolder1$hrMailClick", "", true, "hrMailValidationGroup", "", false, false))' id="ctl00_ContentPlaceHolder1_hrMailClick" class="button" type="submit">
+
+                                    <input name="ctl00$ContentPlaceHolder1$ctl02" class="button" onclick="FederatedPartnerLogin(false);" value="Cancel" type="button">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <input name="GlobalAS_Provider" id="GlobalAS_Provider" value="" type="hidden">
+            </div>
 }
-</section>
+    </section>
 
-<section class="social" id="socialLoginForm">
-    <h2>Use another service to log in.</h2>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-</section>
+   
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</body>
+</html>
