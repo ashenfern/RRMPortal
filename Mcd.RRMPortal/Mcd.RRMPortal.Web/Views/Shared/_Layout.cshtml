@@ -11,13 +11,488 @@
     @Scripts.Render("~/bundles/customJS")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Scripts/RSM%20Support%20Portal_files/Style.css" rel="stylesheet" type="text/css">
+
+    <script src="~/Scripts/RSM%20Support%20Portal_files/jQuery_002.js" type="text/javascript"></script>
+    <script src="~/Scripts/RSM%20Support%20Portal_files/jQuery.js" type="text/javascript"></script>
+    <script src="~/Scripts/RSM%20Support%20Portal_files/SolutionWideScripts.js" type="text/javascript"></script>
+    <script src="~/Scripts/RSM%20Support%20Portal_files/ReportingServices.js" type="text/javascript"></script>
+    <script src="~/Scripts/RSM%20Support%20Portal_files/browsercheck.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var BrowserCheckCounter = 0;
+        var mouseY = 0;
+        var nwCdownDate = new Date();
+        var alertTimerId = 0;
+        var Countdown = 0;
+        var windowCount = 0;
+        var ADFSModeEnabled = '1';
+        var OTPModeEnabled = '1';
+        var g_urlarray = [];
+        var children = [];
+        var windows = new Array();
+        function loadUniquePage(page, name, options) {
+            var mywindow;
+            if (opener && !opener.closed) {
+                opener.focus();
+            } else {
+                mywindow = window.open(page, name, options);
+                opener = mywindow;
+                windows.push(mywindow);
+                return false;
+            }
+        }
+        if (typeof String.prototype.startsWith != 'function') {
+            String.prototype.startsWith = function (str) {
+                return this.indexOf(str) == 0;
+            };
+        }
+        Array.prototype.has = function (value) {
+            for (var s in this) {
+                if (s === value) {
+                    return true;
+                }
+            }
+            return false;
+        };
+        function PopUp(url) {
+            var windowCount = windowCount++;
+            var newwindow = window.open(url, '_blank', 'width=800,height=600,scrollbars=yes');
+            windows.push(newwindow);
+            if (window.focus) {
+                newwindow.focus();
+            }
+        }
+        function CloseWindows() {
+            for (i = 0; i < windows.length; i++) {
+                windows[i].close();
+            }
+        }
+        function timeOutMsg() {
+            var tOut = setTimeout("alert('Your Session Will Timeout in 1 minute')", 1000);
+        }
+        function readSessionTimeout() {
+            var sessionTimeout = '120';
+            return sessionTimeout;
+        }
+        function getYear() {
+            var year = nwCdownDate.getFullYear();
+            return year;
+        }
+        function getMonth() {
+            var month = nwCdownDate.getMonth() + 1;
+            return month;
+        }
+        function getDay() {
+            var day = nwCdownDate.getDate();
+            return day;
+        }
+        function getHour() {
+            var hour = nwCdownDate.getHours();
+            return hour;
+        }
+        function getMinutes() {
+            var minute = nwCdownDate.getMinutes();
+            minute = parseInt(readSessionTimeout()) + minute;
+            return minute;
+        }
+        function getSeconds() {
+            var second = nwCdownDate.getSeconds();
+            return second;
+        }
+        var cdownYear = getYear();
+        var cdownMonth = getMonth();
+        var cdownDay = getDay();
+        var cdownHour = getHour();
+        var cdownMinute = getMinutes();
+        var cdownSecond = getSeconds();
+        function showCountdown() {
+            var countDownLabel = document.getElementById("cDownLabel");
+            if (cdownMinute > 60) {
+                cdownMinute = cdownMinute - 60;
+                cdownHour++;
+            }
+            var dtNow = new Date();
+            Countdown = new Date(cdownYear, cdownMonth - 1, cdownDay, cdownHour, cdownMinute, cdownSecond);
+            var mSecondsToCoundown = Countdown.getTime() - dtNow.getTime();
+            var rest = Math.floor(mSecondsToCoundown / 1000);
+            var CountdownText = "";
+            if (rest >= 31536000) {
+                var years = Math.floor(rest / 31536000);
+                rest = rest - years * 31536000;
+                if (years > 1 || years == 0) {
+                    CountdownText += years + " years ";
+                } else if (years == 1) {
+                    CountdownText += years + " years ";
+                }
+            }
+            if (rest >= 86400) {
+                var days = Math.floor(rest / 86400);
+                rest = rest - days * 86400;
+                if (days > 1 || days == 0) {
+                    CountdownText += days + " days  ";
+                } else if (days == 1) {
+                    CountdownText += days + " day  ";
+                }
+            }
+            if (rest >= 3600) {
+                var hour = Math.floor(rest / 3600);
+                rest = rest - hour * 3600;
+                if (hour > 10) {
+                    CountdownText += hour + ":";
+                } else if (hour > 1 && hour < 10 || hour == 0) {
+                    CountdownText += " 0" + hour + ":";
+                } else if (hour == 1) {
+                    CountdownText += " 0" + hour + ":";
+                }
+            }
+            if (rest >= 60) {
+                var minutes = Math.floor(rest / 60);
+                rest = rest - minutes * 60;
+                if (minutes > 10) {
+                    CountdownText += minutes + ":";
+                } else if (minutes > 1 && minutes < 10 || minutes == 0) {
+                    CountdownText += "0" + minutes + ":";
+                } else if (minutes == 1) {
+                    CountdownText += "0" + minutes + ":";
+                }
+            }
+            if (rest >= 10) {
+                CountdownText += rest;
+            } else if (rest > 1 && rest < 10 || rest == 0) {
+                CountdownText += "0" + rest;
+            } else if (rest == 1) {
+                CountdownText += "0" + rest;
+            }
+            if (CountdownText == "") {
+                CountdownText = "User logged out by system:" + cdownHour + ":" + cdownMinute + ":" + cdownSecond + "  " + cdownDay + "/" + cdownMonth + "/" + cdownYear;
+            }
+            countDownLabel.innerHTML = CountdownText;
+            if (ADFSModeEnabled != '1') {
+                if (CountdownText == "1 minute 1 second ") {
+                    setTimeout("ShowOneMinuteWarning()", 1000);
+                }
+            }
+            if (CountdownText == "1 second ") {
+                Mcd.RSMSP.WebApp.WebServices.LogoutService.LogoutUser();
+                CloseWindows();
+                window.location.href = "LoginPage.aspx";
+            }
+            alertTimerId = window.setTimeout("showCountdown()", 1000);
+        }
+        function ShowOneMinuteWarning() {
+            loadUniquePage('LogoutWarning.aspx', '_blank', 'width=800,height=600,scrollbars=yes');
+        }
+        function ResetTimer() {
+            clearTimeout(alertTimerId);
+            nwCdownDate = new Date();
+            cdownYear = getYear();
+            cdownMonth = getMonth();
+            cdownDay = getDay();
+            cdownHour = getHour();
+            cdownMinute = getMinutes();
+            cdownSecond = getSeconds();
+            if (ADFSModeEnabled != '1' && OTPModeEnabled != '1') {
+                setTimeout("showCountdown()", 1000);
+            }
+        }
+        var dynamicPageOpenMessage = '<H3> Please search or select a store number first! </H3>';
+        var dynamicPageOpenTitle = 'Missing Store Number';
+        // Global.Master
+        function launchApplication(l_url, l_windowName) {
+            ResetTimer();
+            var l_width = screen.availWidth / 2;
+            var l_height = screen.availHeight / 2;
+            var winRef;
+            var l_params = 'status=1' + ',location=1' + ',status=1' + ',resizable=1' + ',scrollbars=1' + ',width=' + l_width + ',height=' + l_height + ',left=20' + ',top=20';
+            var erNumber;
+            try {
+                if (g_urlarray.has(l_url)) {
+                    winRef = g_urlarray[l_url];
+                }
+            } catch (err) {
+                var erDescription = err.description;
+                erNumber = err.number;
+                Mcd.RSMSP.WebApp.WebServices.LoggingWebService.JsErrorLogging('launchApplication', erDescription, erNumber);
+            }
+            try {
+                if (!window.popups)
+                    window.popups = {};
+                if (window.popups[l_windowName])
+                    window.popups[l_windowName].close();
+                window.popups[l_windowName] = window.open(l_url, l_windowName, l_params);
+                winRef = window.popups[l_windowName];
+                winRef.moveTo(20, 20);
+                winRef.resizeTo(l_width, l_height);
+
+                //windows.push(winRef);
+                //g_urlarray[l_url] = winRef;
+                //children[children.length] = winRef;
+
+                var index = windows.indexOf(winRef);
+                if (index <= 0) {
+                    windows.push(winRef);
+                    g_urlarray[l_url] = winRef;
+                    children[children.length] = winRef;
+                }
+                setOpenerWinRef(l_url, winRef);
+                winRef.focus();
+
+            } catch (err) {
+                var erDescriptionSec = err.description;
+                if (erDescriptionSec.indexOf('name') != -1) {
+                    if (winRef == null || winRef.closed) {
+                        winRef = window.open(l_url, l_windowName, l_params);
+                        winRef.moveTo(20, 20);
+                        winRef.resizeTo(l_width, l_height);
+                        windows.push(winRef);
+                        g_urlarray[l_url] = winRef;
+                        children[children.length] = winRef;
+                    } else {
+                        winRef.focus();
+                    }
+                } else {
+                    erNumber = err.number;
+                    Mcd.RSMSP.WebApp.WebServices.LoggingWebService.JsErrorLogging('launchApplication', erDescriptionSec, erNumber);
+                }
+            }
+        }
+        function setOpenerWinRef(url, winRef) {
+            if (this.opener != null) {
+                try {
+                    this.opener.setOpenerWinRef(url, winRef);
+                }
+                catch (e) {
+                }
+            } else {
+                var index = windows.indexOf(winRef);
+                if (index <= 0) {
+                    windows.push(winRef);
+                }
+            }
+        }
+        function CloseBrowser(caz) {
+            if (caz == 1) {
+                var answer = confirm("The Dashboard page will be closed. \nDo you want continue?")
+                if (answer) {
+                    for (var i = 0; i < children.length; i++) {
+                        children[i].close();
+                    }
+                    window.open('', '_self', '');
+                    window.opener = null;
+                    window.close();
+                }
+            } else {
+                for (var s = 0; s < children.length; s++) {
+                    children[s].close();
+                }
+                window.open('', '_self', '');
+                window.opener = null;
+                window.close();
+                __doPostBack('ctl00$btnLogout', '');
+            }
+        }
+        var displayCounter = 0;
+        function alertUserPwdExpiration() {
+            var winLoc = window.location;
+            var alertMsg;
+            if (winLoc.toString().indexOf('Dashboard') != -1) {
+                if (displayCounter < 1) {
+                    if ('None' != null) {
+                        alertMsg = 'None';
+                        if (alertMsg != 'None') {
+                            alert(alertMsg);
+                        }
+                        displayCounter = displayCounter + 1;
+                        return;
+                    }
+                }
+            } else if (winLoc.toString().indexOf('dashboard') != -1) {
+                if (displayCounter < 1) {
+                    if ('None' != null) {
+                        alertMsg = 'None';
+                        if (alertMsg != 'None') {
+                            alert(alertMsg);
+                        }
+                        displayCounter = displayCounter + 1;
+                        return;
+                    }
+                }
+            }
+        }
+        function BrowsercheckCallbackPanel_EndCallback(s, e) {
+            if (s.cpExit != undefined) {
+                delete s.cpExit;
+                CloseBrowser(0);
+            }
+        }
+
+
+        $("[id$=body1]").ready(function () {
+
+            // US 1575 Browser Check
+            try {
+                if (BrowserCheckCounter < 1) {
+                    var hiddenScript = document.getElementById('hiddenBrowsercheck');
+
+                    if ((hiddenScript.value != null) && (hiddenScript.value.length > 0)) {
+                        var params = hiddenScript.value.split('XX');
+                        if (params.length == 6) {
+                            // execute it only, if we have all parameter
+                            UnsupportedBrowserCheck(params[0], params[1], params[2], params[3], params[4], params[5], BrowsercheckCallbackPanel);
+                        }
+                    }
+                }
+            }
+            catch (ex) {
+                //alert("browser check exception: " + ex.message );
+            }
+
+            try {
+                if (displayCounter < 1) {
+                    var hiddenScript = document.getElementById('hiddenPwExpire');
+
+                    if ((hiddenScript.value != null) && (hiddenScript.value.length > 0)) {
+                        alertUserPwdExpiration();
+                    }
+                }
+            }
+            catch (ex) {
+                //alert("pw expire check exception: " + ex.message );
+            }
+
+            var pipeLabelId = 'lblPipe';
+            var lblTimeoutId = 'lblTimeout';
+            var countDownLabel = document.getElementById("cDownLabel");
+            var pipeLabel = document.getElementById(pipeLabelId);
+            var timeoutLabel = document.getElementById(lblTimeoutId);
+            if (ADFSModeEnabled == '1' || OTPModeEnabled == '1') {
+                countDownLabel.style.visibility = "hidden";
+                pipeLabel.style.visibility = "hidden";
+                timeoutLabel.style.visibility = "hidden";
+            } else {
+                countDownLabel.style.visibility = "visible";
+                pipeLabel.style.visibility = "visible";
+                timeoutLabel.style.visibility = "visible";
+                showCountdown();
+            }
+            if (window.location.pathname.indexOf("Dashboard") != -1) {
+                var imgLogo = $("[id$=imgHeaderLogo]")[0];
+                imgLogo.title = 'Refresh Dashboard Page!';
+                imgLogo.style.cursor = "pointer";
+            }
+
+            $("[id$=webwidget_vertical_menu]").webwidget_vertical_menu({
+                ///good values
+                ///menu maximum width -> default:  200px
+                menu_width: '90',
+
+                //second level menu (sub menu) width -> default : auto 
+                submenu_width: '160',
+
+                //menu entry height -> default: auto
+                menu_height: 'auto',
+
+                ///menu entry margin -> default: 2
+                menu_margin: '2',
+
+                //menu entry test size -> default: 12
+                menu_text_size: '12',
+
+                ///menu entry default text color -> default: #0D0711 (dark gray)
+                menu_text_color: '#0D0711',
+
+                /// menu entry level 1 background color -> default: #FFFFFF (white)
+                menu_background_color: '#FFFFFF',
+
+                ///menu item second level border size ->  default: 2
+                menu_border_size: '0',
+
+                ///menu item second level border color -> default: #000000
+                menu_border_color: '#00000',
+                menu_border_style: 'solid',
+
+                ///menu item and sub menu items hover in color: default: #798090 (light gray)
+                menu_hover_color: '#798090',
+
+                ///menu item and sub menu items hover in color: default: #434343 (light gray)
+                menu_hoverOut_color: "#0D0711",
+
+                ///menu item (sub menu color)
+                menu_secondLevel_background_Color: "#C5D9F1"
+            });
+            ResizeHeaderDependingOnLogo();
+        });
+        $(document).mousemove(function (e) {
+            mouseY = e.pageY;
+        });
+        function ResetTimer() {
+            clearTimeout(alertTimerId);
+            nwCdownDate = new Date();
+            cdownYear = getYear();
+            cdownMonth = getMonth();
+            cdownDay = getDay();
+            cdownHour = getHour();
+            cdownMinute = getMinutes();
+            cdownSecond = getSeconds();
+            if (ADFSModeEnabled != '1' && OTPModeEnabled != '1') {
+                setTimeout("showCountdown()", 1000);
+            }
+        }
+
+        //            $(function () {
+        //                $("[id$=webwidget_vertical_menu]").webwidget_vertical_menu({
+        //                    ///good values
+        //                    ///menu maximum width -> default:  200
+        //                    menu_width: '200',
+
+        //                    //second level menu (sub menu) width -> default : auto 
+        //                    submenu_width: 'auto',
+
+        //                    //menu entry height -> default: auto
+        //                    menu_height: 'auto',
+
+        //                    ///menu entry margin -> default: 2
+        //                    menu_margin: '2',
+
+        //                    //menu entry test size -> default: 12
+        //                    menu_text_size: '12',
+
+        //                    ///menu entry default text color -> default: #0D0711 (dark gray)
+        //                    menu_text_color: '#0D0711',
+
+        //                    /// menu entry level 1 background color -> default: #FFFFFF (white)
+        //                    menu_background_color: '#FFFFFF',
+
+        //                    ///menu item second level border size ->  default: 2
+        //                    menu_border_size: '0',
+
+        //                    ///menu item second level border color -> default: #000000
+        //                    menu_border_color: '#00000',
+        //                    menu_border_style: 'solid',
+
+        //                    ///menu item and sub menu items hover in color: default: #798090 (light gray)
+        //                    menu_hover_color: '#798090',
+
+        //                    ///menu item and sub menu items hover in color: default: #434343 (light gray)
+        //                    menu_hoverOut_color: "#0D0711",
+
+        //                    ///menu item (sub menu color)
+        //                    menu_secondLevel_background_Color: "#C5D9F1"
+
+
+        //                });
+        //            });
+    </script>
+
 </head>
 <body>
     <header>
         <div class="content-wrapper">
-            <div class="float-left">
+            @*<div class="float-left">
                 <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
-            </div>
+            </div>*@
             <div class="float-right">
                 <section id="login">
                     @Html.Partial("_LoginPartial")
@@ -42,6 +517,469 @@
             @RenderBody()
         </section>
     </div>
+
+    @*Added part from the *@
+    <form method="post" action="./Dashboard.aspx?index=0" onsubmit="javascript:return WebForm_OnSubmit();" id="form1">
+        <div class="aspNetHidden">
+            <input name="__EVENTTARGET" id="__EVENTTARGET" value="" type="hidden">
+            <input name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" type="hidden">
+            <input name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTY1NzQ3NDM5OGQYAgUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgEFHWN0bDAwJFN0b3JlU2VhcmNoJEFTUHhCdXR0b24xBSRjdGwwMCRTdG9yZVNlYXJjaCRtdl9TdG9yZVNlYXJjaEFyZWEPD2RmZGtVl0q7bG2ggpIKKSST7Fn0Lana+31MBvXHRbHDhKnt" type="hidden">
+        </div>
+
+        <script type="text/javascript">
+            //<![CDATA[
+            var theForm = document.forms['form1'];
+            if (!theForm) {
+                theForm = document.form1;
+            }
+            function __doPostBack(eventTarget, eventArgument) {
+                if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+                    theForm.__EVENTTARGET.value = eventTarget;
+                    theForm.__EVENTARGUMENT.value = eventArgument;
+                    theForm.submit();
+                }
+            }
+            //]]>
+        </script>
+
+
+        <script src="~/Scripts/RSM%20Support%20Portal_files/WebResource.js" type="text/javascript"></script>
+
+        <script id="dxis_676888211" src="~/Scripts/RSM%20Support%20Portal_files/DXR_003.axd" type="text/javascript"></script>
+        <script id="dxis_320156312" src="RSM%20Support%20Portal_files/DXR.axd" type="text/javascript"></script>
+        <script src="~/Scripts/RSM%20Support%20Portal_files/ScriptResource_003.js" type="text/javascript"></script>
+        <script src="~/Scripts/RSM%20Support%20Portal_files/ScriptResource_002.js" type="text/javascript"></script>
+        <script src="~/Scripts/RSM%20Support%20Portal_files/ScriptResource.js" type="text/javascript"></script>
+        <script src="~/Scripts/RSM%20Support%20Portal_files/js_002.js" type="text/javascript"></script>
+        <script src="~/Scripts/RSM%20Support%20Portal_files/js.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            //<![CDATA[
+            function WebForm_OnSubmit() {
+                if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+                return true;
+            }
+            //]]>
+        </script>
+
+        <div class="aspNetHidden">
+
+            <input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="B543B226" type="hidden">
+            <input name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAA3GA876g4jJPrPeZmEKn4xym0cF6UJ36C8Ob8CzcS5DRJ5lwcN+6pjbje1iqG1bqV1tYDJamOYbxxQuix+rxe2rdNGxS/jmFHIvZRzpoc1Vnrs3OaFcAVechy1O2vHag7x6r4O0bjwXOqFIuCvyHl6piDam+ooe8yDxDuay3B4hCOfVk0GGOX9bxlwEDR0Xy2aG/2QVVyw6MpCCw+32rsLaZg+e+gosC86MnrYyKO0dSzGyu+5mVHoCsfxB9QAsAkCQPgLHgEoUBean9Kp+kuB69YPXQPu+sWr3pMqgWJV//RXs1vshYbIYITVGAoDSTGk=" type="hidden">
+        </div>
+
+        <div id="container" align="center">
+            <div id="main">
+                <!-- HEADER -->
+                <div style="height: 118px;" id="header">
+                    <div class="logo">
+
+                        <a onclick="reload_Dashboard();return;" target="_self">
+                            <img style="cursor: pointer;" title="Refresh Dashboard Page!" id="imgHeaderLogo" src="~/Scripts/RSM%20Support%20Portal_files/m_logo.png"></a>
+                    </div>
+                    <div class="breadcrumb">
+                        <div style="float: left; max-width: 620px;">
+                            Remote Restaurant Monitor
+                            <span class="active">/Dashboard
+                            </span>
+                            <span class="version">Version: 1.73.8
+                            </span>
+                        </div>
+                        <div style="float: right">
+                            <span style="visibility: hidden;" id="lblTimeout">Secure logout: </span><span style="visibility: hidden;" id="cDownLabel"></span>
+                            <span style="visibility: hidden;" id="lblPipe">|  </span>
+                            <span class="username">User: 
+                                e1344866
+                            </span>
+                            <span id="lblPipe2">|  </span>
+                            <span class="nodename">Market: 
+                                US
+                            </span>
+
+                        </div>
+                    </div>
+                    <div class="search">
+                        <div class="options">
+                            <div class="logout">
+                                <a id="btnLogout" href="javascript:__doPostBack('ctl00$btnLogout','')" style="color: #D30001; font-size: 14px; font-weight: bold;">Logout</a>
+                            </div>
+                            <div class="settings">
+                                <a id="btnSetting" causesvalidation="False" href="https://rrm.mcd.com/SettingsPage.aspx" target="_self" style="color: #D30001; font-size: 14px; font-weight: bold;">Settings</a>
+                            </div>
+                            <input name="ctl00$hf_ServerDateTime" id="hf_ServerDateTime" value="02/29/2016 06:52:54 AM" type="hidden">
+                        </div>
+                        <div class="searchbar" align="right">
+                            <script type="text/javascript">
+                                //<![CDATA[
+                                Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['tctl00$StoreSearch$storeSearchUpdPanel', 'StoreSearch_storeSearchUpdPanel', 'tctl00$WidgetContainer$widgetContentUpdPanel', 'WidgetContainer_widgetContentUpdPanel', 'tctl00$WidgetContainer$UpdatePanel1', 'WidgetContainer_UpdatePanel1', 'tctl00$popupUpdPanel', 'popupUpdPanel'], ['ctl00$StoreSearch$searchStoreButton', 'StoreSearch_searchStoreButton'], [], 600, 'ctl00');
+                                //]]>
+                            </script>
+
+
+                            <div style="height: 0; overflow: hidden; width: 0; z-index: -1;">
+                                <script id="dxis_1826206058" src="~/Scripts/RSM%20Support%20Portal_files/DXR_002.axd" type="text/javascript"></script>
+                                <div class="dxbButton hideDevExpressButton dxbButtonSys dxbTSys" id="StoreSearch_ASPxButton1" style="height: 0px; width: 0px; -moz-user-select: none;">
+                                    <div id="StoreSearch_ASPxButton1_CD" class="dxb">
+                                        <input class="dxb-hb" value="Go" name="ctl00$StoreSearch$ASPxButton1" type="submit"><span class="dx-vam">Go</span>
+                                    </div>
+                                </div>
+                                <script id="dxss_765143022" type="text/javascript">
+<!--
+    aspxAddHoverItems('StoreSearch_ASPxButton1', [[['dxbButtonHover'], [''], [''], ['', 'TC']]]);
+    aspxAddPressedItems('StoreSearch_ASPxButton1', [[['dxbButtonPressed'], [''], [''], ['', 'TC']]]);
+
+    var dxo = new ASPxClientButton('StoreSearch_ASPxButton1');
+    window['StoreSearch_ASPxButton1'] = dxo;
+    dxo.autoPostBack = true;
+    dxo.uniqueID = 'ctl00$StoreSearch$ASPxButton1';
+    dxo.RegisterServerEventAssigned(['Click']);
+    aspxAddSelectedItems('StoreSearch_ASPxButton1', [[['dxbf'], [''], ['CD']]]);
+    dxo.autoPostBackFunction = function (postBackArg) { WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$StoreSearch$ASPxButton1", postBackArg, true, "", "", false, false)); };
+    dxo.AfterCreate();
+
+    //-->
+                                </script>
+                            </div>
+                            <div style="float: right;">
+                                <div id="StoreSearch_storeSearchUpdPanel">
+
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+
+                                                    <span id="StoreSearch_lblStoreNumber">store #</span>
+                                                    <input name="ctl00$StoreSearch$storeIDInput" id="StoreSearch_storeIDInput" title="Enter a store# here! Patterns: 12345, 01234, 4; Each store# can be prefixed by a two digits country code (E.g: DE,UK,IE,US...)" onkeydown="return Clickbutton(event,StoreSearch_searchStoreButton,'WidgetContainer_Panel1','StoreSearch_panlStoreError');" type="text">
+                                                    <span id="StoreSearch_regExValidatorStorenumber" style="visibility: hidden;">*</span>
+
+                                                </td>
+                                                <td>
+                                                    <a id="StoreSearch_searchStoreButton" class="searchbtn" onmouseup="ResetTimer();searchButtonSetCookie();HideElements('WidgetContainer_Panel1','StoreSearch_panlStoreError');" href='javascript:WebForm_DoPostBackWithOptions(new%20WebForm_PostBackOptions("ctl00$StoreSearch$searchStoreButton",%20"",%20true,%20"",%20"",%20false,%20true))'>Go</a>
+                                                </td>
+                                                <td>
+                                                    <div aria-hidden="true" role="status" id="StoreSearch_storeSearchUpdProgress" style="display: none;">
+
+                                                        <img id="StoreSearch_img1" src="~/Scripts/RSM%20Support%20Portal_files/Loading.gif" align="middle">
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <a id="StoreSearch_dashboardHelp" title="Dashboard Help" onclick="ResetTimer();SetLogSource('PageHelpLink|NO-STORE|Dashboard|Dashboard Help','StoreSearch_dashboardHelp','e1344866');" href="https://xeroxmsp.service-now.com/kb_view.do?sysparm_article=KB0029709" target="_blank">Dashboard Help</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <div id="StoreSearch_panlStoreError">
+                                                    </div>
+                                                    <div id="StoreSearch_regExpVal1Summary" style="color: Red; display: none;">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div style="clear: both; height: 0;">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- NAV -->
+                <div id="leftnav">
+                    <div id="webwidget_vertical_menu" class="webwidget_vertical_menu">
+                        <ul>
+                            <br>
+                            <li class="webwidget_vertical_menu_down_drop" style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Administration</a><ul style="background-color: rgb(255, 255, 255); left: 90%; top: 0px; padding-top: 3px;">
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/AdminPage.aspx','adminpage_0_45');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Admin Page</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/RestorePriorConfiguration.aspx','restorepriorconfiguration_0_12');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Restore Prior Configuration</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/GroupMembership.aspx','securitygroupmembership_0_13');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Security Group Membership</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/BackEndValidator.aspx','backendvalidation_0_10');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Validate Back-End Connections</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=82&amp;index=0','System_Components_82_0','')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">System Components</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/RefreshRUMCache.aspx','refreshrumcache_0_130');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Refresh RUM Data Cache</a></li>
+                            </ul>
+                            </li>
+                            <li style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a onclick="ResetTimer();launchApplication('/Impersonation.aspx','impersonation_0_14');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Impersonation</a></li>
+                            <hr>
+                            <li style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=49&amp;index=0','POS_Server_49_0','store')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">POS Server</a></li>
+                            <li style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=50&amp;index=0','Back_Office_Server_50_0','store')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Back Office Server</a></li>
+                            <li style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=51&amp;index=0','RFM_and_Apply_Update_51_0','store')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">RFM and Apply Update</a></li>
+                            <li style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=52&amp;index=0','Cashless_52_0','store')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Cashless</a></li>
+                            <li style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=53&amp;index=0','Drive_Thru_53_0','store')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Drive Thru</a></li>
+                            <li style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=54&amp;index=0','Front_Counter_54_0','store')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Front Counter</a></li>
+                            <li style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=55&amp;index=0','KVS_55_0','store')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">KVS</a></li>
+                            <li style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=61&amp;index=0','System_History_61_0','store')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">System History</a></li>
+                            <li style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=62&amp;index=0','RFM_and_Apply_Update_Details_62_0','store')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">RFM and Apply Update Details</a></li>
+                            <li style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=126&amp;index=0','Device_Readiness_Details_126_0','store')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Device Readiness Details</a></li>
+                            <li style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=72&amp;index=0','Ping_McConnection_72_0','store')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Ping McConnection</a></li>
+                            <li style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=80&amp;index=0','Installed_Programs_80_0','store')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Installed Programs</a></li>
+                            <li style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=81&amp;index=0','Installed_GUM_Programs_81_0','store')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Installed GUM Programs</a></li>
+                            <li style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=76&amp;index=0','SCOM_Events_for_Deployment_76_0','store')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">SCOM Events for Deployment</a></li>
+                            <hr>
+                            <li class="webwidget_vertical_menu_down_drop" style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Deployment</a><ul style="background-color: rgb(255, 255, 255); left: 90%; top: 0px; padding-top: 3px;">
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/RUM/CalendarView/CalendarView.aspx','calendarview_0_113');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Calendar</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="RUM_ReleaseListOpenScript('/RUM/Release/ReleaseList.aspx','releaselist','0','105');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Releases</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="RUM_DeploymentsListOpenScript('/RUM/Deployments/DeploymentsList.aspx','deploymentslist','0','116');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Deployments</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/RUM/StoreGroups/StoreGroupList.aspx','storegrouplist_0_106');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Store Groups</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/RUM/FreezeDates/FreezeDatesList.aspx','freezedateslist_0_109');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Freeze Dates</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=73&amp;index=0','Store_Deployment_Schedule_and_Results_73_0','store')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Store Deployment Schedule and Results</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=77&amp;index=0','Release_Schedule_Report_77_0','')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Release Schedule Report</a></li>
+                            </ul>
+                            </li>
+                            <hr>
+                            <li class="webwidget_vertical_menu_down_drop" style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Reporting</a><ul style="background-color: rgb(255, 255, 255); left: 90%; top: 0px; padding-top: 3px;">
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=67&amp;index=0','Recent_Usage_67_0','')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Recent Usage</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=78&amp;index=0','RSM_Asset_Report_78_0','')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">RSM Asset Report</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=103&amp;index=0','Systemwide_Data_Health_103_0','')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Systemwide Data Health</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=104&amp;index=0','DBMoto_Replication_104_0','')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">DBMoto Replication</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=79&amp;index=0','Asset_Data_Collection_Performance__79_0','')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Asset Data Collection Performance </a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();LaunchApplicationWithConfirmation('/TemplatePage.aspx?cid=125&amp;index=0','SCCM_Advertisement_Report_125_0','')" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">SCCM Advertisement Report</a></li>
+                            </ul>
+                            </li>
+                            <li class="webwidget_vertical_menu_down_drop" style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Table Maintenance</a><ul style="background-color: rgb(255, 255, 255); left: 90%; top: 0px; padding-top: 3px;">
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/RUM/TableMaintenance/DeviceType/DeviceTypes.aspx','devicetype_0_118');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Manage Device Types</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/RUM/TableMaintenance/Application/Applications.aspx','devicetype_0_118');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Manage Applications</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/RUM/TableMaintenance/PhaseGroup/PhaseGroups.aspx','applicationlist_0_119');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Manage Phase Groups</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/RUM/TableMaintenance/ReleasePhase/ReleasePhases.aspx','phasegroup_0_120');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Manage Phases</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/RUM/TableMaintenance/DeviceCategory/DeviceCategoryList.aspx','devicecategorylist_0_117');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Manage Device Categories</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/RUM/TableMaintenance/ConfigurationPath/ConfigurationPath.aspx','configurationpath_0_122');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Manage Configuration Paths</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/RUM/TableMaintenance/BackendConfiguration/BackendConfiguration.aspx','backendconfiguration_0_123');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Manage Backend Configurations</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/RUM/TableMaintenance/BackendConfigurationType/BackendConfigurationType.aspx','backendconfigurationtype_0_124');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Manage Configuration Types</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/RUM/TableMaintenance/Store/Store.aspx','store_0_131');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Manage Stores</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/RUM/TableMaintenance/StoreOpenStatus/StoreOpenStatus.aspx','storeopenstatus_0_127');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Manage Store Open Status</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/RUM/TableMaintenance/OwnerOperator/OwnerOperator.aspx','owneroperator_0_128');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Manage Owner-Operators</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();launchApplication('/RUM/TableMaintenance/McCoop/McCoop.aspx','mccoop_0_129');" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Manage McCoops</a></li>
+                            </ul>
+                            </li>
+                            <hr>
+                            <li class="webwidget_vertical_menu_down_drop" style="margin-bottom: 2px; color: rgb(255, 255, 255); width: 90%;"><a style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Links</a><ul style="background-color: rgb(255, 255, 255); left: 90%; top: 0px; padding-top: 3px;">
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();SetLogSource('LinkFromLinksSection|RRM Feedback','RRM Feedback','e1344866');" href="https://mcdonalds.opinio.net/opinio/s?s=39259" target="_blank" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">RRM Feedback</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();SetLogSource('LinkFromLinksSection|OTP Portal','OTP Portal','e1344866');" href="https://otp.mcd.com/" target="_blank" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">OTP Portal</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();SetLogSource('LinkFromLinksSection|Xerox Self-Service','Xerox Self-Service','e1344866');" href="https://xeroxmsp.service-now.com/" target="_blank" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">Xerox Self-Service</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();SetLogSource('LinkFromLinksSection|OTP Website','OTP Website','e1344866');" href="https://www.accessmcd.com/accessmcd/na/us/natl/restaurant_ops/otp/home.html" target="_blank" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">OTP Website</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();SetLogSource('LinkFromLinksSection|RFM','RFM','e1344866');" href="https://rfm.mcd.com/" target="_blank" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">RFM</a></li>
+                                <li style="width: auto; white-space: nowrap; min-width: 160px;"><a onclick="ResetTimer();SetLogSource('LinkFromLinksSection|RRM Quick Reference Guide','RRM Quick Reference Guide','e1344866');" href="https://xeroxmsp.service-now.com/kb_view.do?sysparm_article=KB0062074" target="_blank" style="cursor: pointer; color: rgb(13, 7, 17); font-size: 12px; display: block;">RRM Quick Reference Guide</a></li>
+                            </ul>
+                            </li>
+                        </ul>
+                        <div style="clear: both;"></div>
+                    </div>
+                    <ul>
+                        <li>
+                            <div id="staticLinks">
+                            </div>
+                        </li>
+                        <li></li>
+                        <li>
+                            <div id="dynamicLinks">
+                            </div>
+
+                        </li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li>
+                            <div>
+                                <a id="anchor" onclick="return true"></a>
+                                <input name="ctl00$hidden_anchor" id="hidden_anchor" type="hidden">
+                            </div>
+                        </li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div id="right">
+
+                    <div id="WidgetContainer_widgetContentUpdPanel">
+
+                        <div id="WidgetContainer_Panel1">
+                        </div>
+                        <div id="logAnchors">
+                            <a id="WidgetContainer_anchor" onclick="return true"></a>
+                            <input name="ctl00$WidgetContainer$hidden_anchor" id="WidgetContainer_hidden_anchor" type="hidden">
+                            <a id="WidgetContainer_widgethelp_anchor" onclick="return true"></a>
+                            <input name="ctl00$WidgetContainer$hidden_anchorWidgetHelp" id="WidgetContainer_hidden_anchorWidgetHelp" type="hidden">
+                        </div>
+
+                    </div>
+
+                    <script type="text/javascript">
+
+                        //-------------------------------------------------------------------------------------
+                        //      Perform the on key press event in storeIdInput text box
+                        //-------------------------------------------------------------------------------------
+                        function Clickbutton(e, targetButton, panelToHide, storeErrPnltoHide) {
+                            //US136 HideElements(p);
+                            if (e.keyCode == 13) {
+                                var p = panelToHide;
+                                var ps = storeErrPnltoHide;
+                                searchButtonSetCookie();
+                                ResetTimer();
+                                HideElements(p, ps);
+                                targetButton.click();
+
+                                return false;
+                            }
+                            return true;
+                        }
+                        //-------------------------------------------------------------------------------------
+                        //      Handling Multiple Asynchronous Postbacks
+                        //-------------------------------------------------------------------------------------
+                        //////        var prm = Sys.WebForms.PageRequestManager.getInstance();
+                        //////        prm.add_initializeRequest(InitializeRequestHandler);
+                        //////        prm.add_endRequest(EndRequestHandler);
+                        //////        var pbQueue = new Array();
+                        //////        var argsQueue = new Array();
+                        //////        // On perform a new call
+                        //////        function InitializeRequestHandler(sender, args)
+                        //////        {
+                        //////            //alert("init request handler");
+                        //////            //            $("[id$=queryDataGridView]").tablesorter().unload();
+                        //////            //            $("[id$=detailQueryDeviceDataGridView]").tablesorter().unload();
+                        //////            //            $("[id$=healthStatusGridView]").tablesorter().unload();
+
+                        //////            if (prm.get_isInAsyncPostBack())
+                        //////            {
+                        //////                args.set_cancel(true);
+                        //////                pbQueue.push(args.get_postBackElement().id);
+                        //////                argsQueue.push(document.forms[0].__EVENTARGUMENT.value);
+                        //////            }
+                        //////        }
+                        //////        // On finishing last call
+                        //////        function EndRequestHandler(sender, args)
+                        //////        {
+                        //////            //            try
+                        //////            //            {
+
+                        //////            //                sorting();
+                        //////            //                DeviceDetailsorting();
+                        //////            //                sortingHealthWidget();
+                        //////            //            } catch (ex)
+                        //////            //            {
+                        //////            //            }
+                        //////            //            if (pbQueue.length > 0)
+                        //////            //            {
+                        //////            //                __doPostBack(pbQueue.shift(), argsQueue.shift());
+                        //////            //            }
+                        //////        }
+
+                        //////    
+
+                    </script>
+
+                    <div id="WidgetContainer_UpdatePanel1">
+
+                        <input name="ctl00$WidgetContainer$RequestID" id="WidgetContainer_RequestID" type="hidden">
+                        <input name="ctl00$WidgetContainer$dynamicPagesOpening" id="WidgetContainer_dynamicPagesOpening" type="hidden">
+                    </div>
+
+                    <script type="text/javascript" defer="defer">
+                        Sys.Application.add_load(ApplicationLoadHandler);
+                        function ApplicationLoadHandler(sender, args) {
+                            Sys.WebForms.PageRequestManager.getInstance().add_initializeRequest(CheckStatus);
+                        }
+                        function CheckStatus(sender, args) {
+                            var prm = Sys.WebForms.PageRequestManager.getInstance();
+                            //if (prm.get_isInAsyncPostBack() & args.get_postBackElement().id == 'ctl00_StoreSearch_CancelRefresh')
+                            if (prm.get_isInAsyncPostBack() & (args.get_postBackElement().id == 'ctl00_StoreSearch_searchStoreButton' || args.get_postBackElement().id == 'ctl00_StoreSearch_ddl_OTPStores')) {
+                                var panel1 = 'WidgetContainer_Panel1';
+                                var pnlStoreError = 'StoreSearch_panlStoreError';
+                                HideElements(panel1, pnlStoreError);
+                                prm.abortPostBack();
+
+                            }
+
+                        }
+                        if (typeof (Sys) !== "undefined") Sys.Application.notifyScriptLoaded();
+
+                    </script>
+
+
+                </div>
+            </div>
+        </div>
+        <div id="popupUpdPanel">
+
+            <div id="popupPannelGlMaster" style="width: 1245px;">
+            </div>
+
+        </div>
+        <input name="ctl00$hiddenPwExpire" id="hiddenPwExpire" type="hidden">
+        <input name="ctl00$hiddenBrowsercheck" id="hiddenBrowsercheck" type="hidden">
+        <div id="BrowsercheckCallbackPanel">
+            &nbsp;
+        </div>
+        <script id="dxss_183648695" type="text/javascript">
+<!--
+
+    var dxo = new ASPxClientCallbackPanel('BrowsercheckCallbackPanel');
+    window['BrowsercheckCallbackPanel'] = dxo;
+    dxo.callBack = function (arg) { WebForm_DoCallback('ctl00$BrowsercheckCallbackPanel', arg, aspxCallback, 'BrowsercheckCallbackPanel', aspxCallbackError, true); };
+    dxo.uniqueID = 'ctl00$BrowsercheckCallbackPanel';
+    dxo.EndCallback.AddHandler(BrowsercheckCallbackPanel_EndCallback);
+    dxo.hideContentOnCallback = false;
+    dxo.AfterCreate();
+
+    //-->
+        </script>
+
+        <script type="text/javascript">
+            //<![CDATA[
+            var Page_ValidationSummaries = new Array(document.getElementById("StoreSearch_regExpVal1Summary"));
+            var Page_Validators = new Array(document.getElementById("StoreSearch_regExValidatorStorenumber"));
+            //]]>
+        </script>
+
+        <script type="text/javascript">
+            //<![CDATA[
+            var StoreSearch_regExValidatorStorenumber = document.all ? document.all["StoreSearch_regExValidatorStorenumber"] : document.getElementById("StoreSearch_regExValidatorStorenumber");
+            StoreSearch_regExValidatorStorenumber.controltovalidate = "StoreSearch_storeIDInput";
+            StoreSearch_regExValidatorStorenumber.errormessage = "Please enter or select a correct store number.";
+            StoreSearch_regExValidatorStorenumber.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+            StoreSearch_regExValidatorStorenumber.validationexpression = ".*(\\d{1,5}).*";
+            //]]>
+        </script>
+
+
+        <script type="text/javascript">
+            //<![CDATA[
+
+            var Page_ValidationActive = false;
+            if (typeof (ValidatorOnLoad) == "function") {
+                ValidatorOnLoad();
+            }
+
+            function ValidatorOnSubmit() {
+                if (Page_ValidationActive) {
+                    return ValidatorCommonOnSubmit();
+                }
+                else {
+                    return true;
+                }
+            }
+
+            (function (id) {
+                var e = document.getElementById(id);
+                if (e) {
+                    e.dispose = function () {
+                        Array.remove(Page_ValidationSummaries, document.getElementById(id));
+                    }
+                    e = null;
+                }
+            })('StoreSearch_regExpVal1Summary');
+
+            WebForm_InitCallback();
+            document.getElementById('StoreSearch_regExValidatorStorenumber').dispose = function () {
+                Array.remove(Page_Validators, document.getElementById('StoreSearch_regExValidatorStorenumber'));
+            }
+            Sys.Application.add_init(function () {
+                $create(Sys.UI._UpdateProgress, { "associatedUpdatePanelId": "StoreSearch_storeSearchUpdPanel", "displayAfter": 0, "dynamicLayout": true }, null, null, $get("StoreSearch_storeSearchUpdProgress"));
+            });
+            //]]>
+        </script>
+        <input value="1_171,1_94,1_164,1_105,1_93" id="DXScript" name="DXScript" type="hidden"><input value="1_4,1_12,1_5,1_3,1_10,CSS/Style.css" id="DXCss" name="DXCss" type="hidden">
+    </form>
+
     <footer>
         <div class="content-wrapper">
             <div class="float-left">
