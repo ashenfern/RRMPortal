@@ -45,16 +45,15 @@
 </ol>
 
 @*1*@
-<div style="width: 100%;overflow: auto;">
+<div style="width: 100%;overflow: auto;>
 <table border="1" id="mtable">
-    <thead><tr><td>Item</td><td>Red</td><td>Green</td></tr></thead>
-    <tbody><tr><td>Some Item</td><td><input type="checkbox"/></td><td><input type="checkbox"/></td></tr></tbody>
+    <thead><tr><td>Row</td><td>Column1</td><td>Column2</td></tr></thead>
+    <tbody><tr><td>Row1</td><td><input type="checkbox"/></td><td><input type="checkbox"/></td></tr></tbody>
 </table>
     </div>
 <br/><br/>
 <input id="row" placeholder="Enter Item Name"/><button id="irow">Insert Row</button><br/><br/>
 <input id="col" placeholder="Enter Heading"/><button id="icol">Insert Column</button>
-@*<input id="loadData" placeholder="Enter Heading"/><button id="iloadData">Insert Column</button>*@
 
 <script type="text/javascript">
     $('#irow').click(function () {
@@ -71,14 +70,5 @@
             $('#mtable tbody tr').each(function () { $(this).children('td:last').append($('<input type="checkbox">')) });
         } else { alert('Enter Text'); }
     });
-    $('#iloadData').click(function () {
-        if ($('#col').val()) {
-            var columns = Math.random();
-
-            $('#mtable tr').append($("<td>"));
-            $('#mtable thead tr>td:last').html($('#col').val());
-            $('#mtable tbody tr').each(function () { $(this).children('td:last').append($('<input type="checkbox">')) });
-        } else { alert('Enter Text'); }
-    });
-
+    
 </script>
