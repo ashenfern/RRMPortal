@@ -514,7 +514,7 @@
     <div id="body">
         @RenderSection("featured", required: false)
         <section class="content-wrapper main-content clear-fix">
-            @RenderBody()
+           @* @RenderBody()*@
         </section>
     </div>
 
@@ -789,7 +789,9 @@
                     </ul>
                 </div>
                 <div id="right">
-
+                    <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
                     <div id="WidgetContainer_widgetContentUpdPanel">
 
                         <div id="WidgetContainer_Panel1">
