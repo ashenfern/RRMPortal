@@ -43,3 +43,42 @@
         <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
     </li>
 </ol>
+
+@*1*@
+<div style="width: 1000px;overflow: auto;">
+<table border="1" id="mtable">
+    <thead><tr><td>Item</td><td>Red</td><td>Green</td></tr></thead>
+    <tbody><tr><td>Some Item</td><td><input type="checkbox"/></td><td><input type="checkbox"/></td></tr></tbody>
+</table>
+    </div>
+<br/><br/>
+<input id="row" placeholder="Enter Item Name"/><button id="irow">Insert Row</button><br/><br/>
+<input id="col" placeholder="Enter Heading"/><button id="icol">Insert Column</button>
+@*<input id="loadData" placeholder="Enter Heading"/><button id="iloadData">Insert Column</button>*@
+
+<script type="text/javascript">
+    $('#irow').click(function () {
+        if ($('#row').val()) {
+            $('#mtable tbody').append($("#mtable tbody tr:last").clone());
+            $('#mtable tbody tr:last :checkbox').attr('checked', false);
+            $('#mtable tbody tr:last td:first').html($('#row').val());
+        } else { alert('Enter Text'); }
+    });
+    $('#icol').click(function () {
+        if ($('#col').val()) {
+            $('#mtable tr').append($("<td>"));
+            $('#mtable thead tr>td:last').html($('#col').val());
+            $('#mtable tbody tr').each(function () { $(this).children('td:last').append($('<input type="checkbox">')) });
+        } else { alert('Enter Text'); }
+    });
+    $('#iloadData').click(function () {
+        if ($('#col').val()) {
+            var columns = Math.random();
+
+            $('#mtable tr').append($("<td>"));
+            $('#mtable thead tr>td:last').html($('#col').val());
+            $('#mtable tbody tr').each(function () { $(this).children('td:last').append($('<input type="checkbox">')) });
+        } else { alert('Enter Text'); }
+    });
+
+</script>
