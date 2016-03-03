@@ -18,5 +18,6 @@ namespace Mcd.RRMPortal.Business
             new StoreProfile(){DataValue ="asdfsdfaf ",Description = "asdfdsaf", LastChangedOn = "dfasdfds", LastDataCollection = "asdfsdafsf"},
             new StoreProfile(){DataValue ="asdfsdfaf ",Description = "asdfdsaf", LastChangedOn = "dfasdfds", LastDataCollection = "asdfsdafsf"}
         };
+        }
     }
 }
