@@ -1125,6 +1125,7 @@
     <Content Include="Scripts\RSM Support Portal_files\DXR.axd" />
     <Content Include="Scripts\RSM Support Portal_files\DXR_002.axd" />
     <Content Include="Scripts\RSM Support Portal_files\DXR_003.axd" />
+    <Content Include="Views\Widget\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
