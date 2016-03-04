@@ -1079,6 +1079,8 @@
     <Content Include="Scripts\RSM Support Portal_files\SolutionWideScripts.js" />
     <Content Include="Scripts\RSM Support Portal_files\Style.css" />
     <Content Include="Scripts\RSM Support Portal_files\WebResource.js" />
+    <Content Include="Scripts\WidgetScripts\WidgetController.js" />
+    <Content Include="Scripts\WidgetScripts\WidgetService.js" />
     <Content Include="Views\Account\content_background.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1129,7 +1131,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\WidgetScripts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

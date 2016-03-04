@@ -3,3 +3,40 @@
 }
 
 <h2>Index</h2>
+<div ng-controller="mvcCRUDCtrl">
+    <div class="divList">
+        <p><b><i>Book List</i></b></p>
+        <table class="table table-hover">
+            <tr>
+                <td><b>ID</b></td>
+                <td><b>Title</b></td>
+                <td><b>Author</b></td>
+                <td><b>Publisher</b></td>
+                <td><b>Isbn</b></td>
+                <td><b>Action</b></td>
+            </tr>
+            <tr ng-repeat="book in books">
+                <td>
+                    {{book.Id}}
+                </td>
+                <td>
+                    {{book.Title}}
+                </td>
+                <td>
+                    {{book.Author}}
+                </td>
+                <td>
+                    {{book.Publisher}}
+                </td>
+                <td>
+                    {{book.Isbn}}
+                </td>
+           
+                <td>
+                    <span ng-click="editBook(book)" class="btn btn-primary">Edit</span>
+                    <span ng-click="deleteBook(book)" class="btn btn-danger">Delete</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
