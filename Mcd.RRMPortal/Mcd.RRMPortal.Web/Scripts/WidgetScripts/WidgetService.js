@@ -1,7 +1,7 @@
 ﻿app.service("widgetService", function ($http) {
 
     //get All Books
-    this.getBooks = function () {
+    this.getStoreProfiles = function () {
         return $http.get("Widget/GetStoreProfiles");
     };
 });
