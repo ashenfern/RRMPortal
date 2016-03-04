@@ -2,39 +2,28 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-<div ng-controller="mvcCRUDCtrl">
+<div ng-controller="widgetCtrl">
     <div class="divList">
-        <p><b><i>Book List</i></b></p>
+        <p><b><i>Store Profile</i></b></p>
         <table class="table table-hover">
             <tr>
-                <td><b>ID</b></td>
-                <td><b>Title</b></td>
-                <td><b>Author</b></td>
-                <td><b>Publisher</b></td>
-                <td><b>Isbn</b></td>
-                <td><b>Action</b></td>
+                <td><b>Description</b></td>
+                <td><b>DataValue</b></td>
+                <td><b>LastChangedOn</b></td>
+                <td><b>LastDataCollection</b></td>
             </tr>
             <tr ng-repeat="book in books">
                 <td>
-                    {{book.Id}}
+                    {{book.Description}}
                 </td>
                 <td>
-                    {{book.Title}}
+                    {{book.DataValue}}
                 </td>
                 <td>
-                    {{book.Author}}
+                    {{book.LastChangedOn}}
                 </td>
                 <td>
-                    {{book.Publisher}}
-                </td>
-                <td>
-                    {{book.Isbn}}
-                </td>
-           
-                <td>
-                    <span ng-click="editBook(book)" class="btn btn-primary">Edit</span>
-                    <span ng-click="deleteBook(book)" class="btn btn-danger">Delete</span>
+                    {{book.LastDataCollection}}
                 </td>
             </tr>
         </table>

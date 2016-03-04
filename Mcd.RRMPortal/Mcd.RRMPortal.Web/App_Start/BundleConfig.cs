@@ -45,7 +45,10 @@ namespace Mcd.RRMPortal.Web
             bundles.Add(new ScriptBundle("~/bundles/customJS").Include(
                                  "~/Scripts/BookScripts/Module.js",
                                  "~/Scripts/BookScripts/Service.js",
-                                 "~/Scripts/BookScripts/Controller.js"));
+                                 "~/Scripts/BookScripts/Controller.js",
+                                  "~/Scripts/WidgetScripts/WidgetController.js",
+                                   "~/Scripts/WidgetScripts/WidgetService.js"
+                                 ));
         }
     }
 }

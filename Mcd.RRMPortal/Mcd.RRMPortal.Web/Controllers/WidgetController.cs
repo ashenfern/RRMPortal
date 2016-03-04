@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mcd.RRMPortal.Business;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -100,6 +101,18 @@ namespace Mcd.RRMPortal.Web.Controllers
             {
                 return View();
             }
+        }
+
+        // GET: All books
+        public JsonResult GetStoreProfiles()
+        {
+            //using (BookDBEntities contextObj = new BookDBEntities())
+            //{
+            //    var bookList = contextObj.Book.ToList();
+            //    return Json(bookList, JsonRequestBehavior.AllowGet);
+            //}
+            var list =  new WidgetManager().GetStoreProfiles();
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -2,6 +2,6 @@
 
     //get All Books
     this.getBooks = function () {
-        return $http.get("Book/GetAllBooks");
+        return $http.get("Widget/GetStoreProfiles");
     };
 });

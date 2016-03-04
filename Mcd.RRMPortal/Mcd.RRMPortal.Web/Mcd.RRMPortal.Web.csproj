@@ -1136,6 +1136,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Mcd.RRMPortal.Business\Mcd.RRMPortal.Business.csproj">
+      <Project>{baf7f8ac-79b4-4fc1-9850-db7f2b110462}</Project>
+      <Name>Mcd.RRMPortal.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Mcd.RRMPortal.Data\Mcd.RRMPortal.Data.csproj">
       <Project>{53710029-1098-4940-b136-86d8cc7adbe1}</Project>
       <Name>Mcd.RRMPortal.Data</Name>
