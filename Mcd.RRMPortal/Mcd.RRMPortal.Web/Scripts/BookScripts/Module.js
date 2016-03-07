@@ -1,1 +1,1 @@
-﻿var app = angular.module("mvcCRUDApp", []);
+﻿var app = angular.module("McdRRMApp", []);
