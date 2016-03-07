@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="BookManager.cs" />
     <Compile Include="IBookManager.cs" />
+    <Compile Include="IWidgetManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WidgetManager.cs" />
   </ItemGroup>

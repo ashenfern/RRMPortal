@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Mcd.RRMPortal.Business
 {
-    public class WidgetManager
+    public class WidgetManager : IWidgetManager
     {
-        public List<StoreProfile> GetStoreProfiles()
-        {
+        public List<StoreProfile> GetStoreProfiles() {
             var listStoreProfiles = new List<StoreProfile>() {
             new StoreProfile(){Description ="Waystation Presentation Build # ",DataValue = "61.7.6143.0114", LastChangedOn = "02/09/2016", LastDataCollection = "03/04/2016 04:25/LT"},
             new StoreProfile(){Description ="ISP Version # ",DataValue = "10.06.00.12", LastChangedOn = "06/24/2015", LastDataCollection = "03/04/2016 04:25/LT"},
