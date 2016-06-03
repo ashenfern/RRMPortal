@@ -2,7 +2,7 @@
 
     //get All Books
     this.getBooks = function () {
-        return $http.get("Book/GetAllBooks");
+        return $http.get("Book/GetAllBooks"); //Web-APi "http://localhost:59095/api/Values"
     };
 
     // get Book by bookId
@@ -32,7 +32,7 @@
     this.AddBook = function (book) {
         var response = $http({
             method: "post",
-            url: "Book/AddBook",
+            url: "Book/AddBook",  //Web Api "http://localhost:59095/api/Values"
             data: JSON.stringify(book),
             dataType: "json"
         });

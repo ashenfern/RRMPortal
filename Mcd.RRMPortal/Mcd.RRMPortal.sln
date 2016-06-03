@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mcd.RRMPortal.Data", "Mcd.R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mcd.RRMPortal.Web", "Mcd.RRMPortal.Web\Mcd.RRMPortal.Web.csproj", "{CD28CD8C-48FD-4CF5-8AE5-C86C1896E702}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mcd.RRMPortal.WebAPI", "Mcd.RRMPortal.WebAPI\Mcd.RRMPortal.WebAPI.csproj", "{FADF94E8-BE6E-438E-AE71-DF15B359CF09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{CD28CD8C-48FD-4CF5-8AE5-C86C1896E702}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD28CD8C-48FD-4CF5-8AE5-C86C1896E702}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD28CD8C-48FD-4CF5-8AE5-C86C1896E702}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FADF94E8-BE6E-438E-AE71-DF15B359CF09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FADF94E8-BE6E-438E-AE71-DF15B359CF09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FADF94E8-BE6E-438E-AE71-DF15B359CF09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FADF94E8-BE6E-438E-AE71-DF15B359CF09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
